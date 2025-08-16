@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-from ..models.video import Video, VideoFormat, VideoMetadata
+from models.video import Video, VideoFormat, VideoMetadata
 
 
 class FileHandler:

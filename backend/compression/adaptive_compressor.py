@@ -11,8 +11,8 @@ import time
 import threading
 import queue
 
-from .motion_detector import MotionDetector, MotionAnalysisResult, ActivitySegment
-from .compression_profiles import (
+from compression.motion_detector import MotionDetector, MotionAnalysisResult, ActivitySegment
+from compression.compression_profiles import (
     CompressionProfileManager, CompressionProfile, ActivityCompressionProfile,
     CompressionSettings, ROICompressionSettings, CompressionValidator
 )

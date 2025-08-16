@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from pathlib import Path
 
-from .motion_detector import MotionDetector, MotionAnalysisResult, ActivitySegment
+from compression.motion_detector import MotionDetector, MotionAnalysisResult, ActivitySegment
 
 
 @dataclass

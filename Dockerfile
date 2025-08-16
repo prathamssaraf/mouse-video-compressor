@@ -93,7 +93,8 @@ ENV HOST=0.0.0.0 \
     UPLOAD_DIR=/app/uploads
 
 # Start command
-CMD ["python", "backend/app.py"]
+WORKDIR /app/backend
+CMD ["python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # Development stage (for docker-compose.dev.yml)
 FROM backend as development
