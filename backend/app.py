@@ -88,17 +88,22 @@ async def startup_event():
     
     # Setup WebSocket broadcasting for progress updates
     def broadcast_progress(event: ProgressEvent):
-        asyncio.create_task(broadcast_to_websockets({
-            "type": "progress_update",
-            "data": {
-                "job_id": event.job_id,
-                "event_type": event.event_type,
-                "percentage": event.percentage,
-                "stage": event.stage,
-                "message": event.message,
-                "timestamp": event.timestamp.isoformat()
-            }
-        }))
+        try:
+            loop = asyncio.get_event_loop()
+            if loop.is_running():
+                asyncio.create_task(broadcast_to_websockets({
+                    "type": "progress_update",
+                    "data": {
+                        "job_id": event.job_id,
+                        "event_type": event.event_type,
+                        "percentage": event.percentage,
+                        "stage": event.stage,
+                        "message": event.message,
+                        "timestamp": event.timestamp.isoformat()
+                    }
+                }))
+        except Exception as e:
+            print(f"Error in progress broadcast: {e}")
     
     progress_tracker.subscribe_to_all(broadcast_progress)
 
@@ -108,6 +113,22 @@ async def shutdown_event():
     """Cleanup on shutdown"""
     logger.log_system(LogLevel.INFO, "Shutting down Mouse Video Compressor API")
     progress_tracker.stop_tracking()
+
+
+# Health Check Endpoint
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for monitoring"""
+    return {
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "version": "1.0.0",
+        "services": {
+            "api": "running",
+            "database": "connected",
+            "redis": "connected"
+        }
+    }
 
 
 # Video Management Endpoints

@@ -302,10 +302,9 @@ class CompressorLogger:
         self.info(LogComponent.COMPRESSION, "Compression metrics recorded", 
                  job_id=job_id, extra_data=metrics, **kwargs)
     
-    def log_motion_analysis_results(self, job_id: str, results: Dict[str, Any], **kwargs):
+    def log_motion_analysis_results(self, level: LogLevel, message: str, **kwargs):
         """Log motion analysis results"""
-        self.info(LogComponent.MOTION_DETECTION, "Motion analysis completed", 
-                 job_id=job_id, extra_data=results, **kwargs)
+        self._log(level, LogComponent.MOTION_DETECTION, message, **kwargs)
     
     # Query methods
     def get_logs(self, component: Optional[LogComponent] = None,
