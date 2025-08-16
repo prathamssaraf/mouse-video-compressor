@@ -86,22 +86,27 @@ async def startup_event():
     # Scan for existing videos
     await refresh_video_database()
     
+    # Store the main event loop for cross-thread async calls
+    main_loop = asyncio.get_event_loop()
+    
     # Setup WebSocket broadcasting for progress updates
     def broadcast_progress(event: ProgressEvent):
         try:
-            loop = asyncio.get_event_loop()
-            if loop.is_running():
-                asyncio.create_task(broadcast_to_websockets({
-                    "type": "progress_update",
-                    "data": {
-                        "job_id": event.job_id,
-                        "event_type": event.event_type,
-                        "percentage": event.percentage,
-                        "stage": event.stage,
-                        "message": event.message,
-                        "timestamp": event.timestamp.isoformat()
-                    }
-                }))
+            if main_loop and not main_loop.is_closed():
+                asyncio.run_coroutine_threadsafe(
+                    broadcast_to_websockets({
+                        "type": "progress_update",
+                        "data": {
+                            "job_id": event.job_id,
+                            "event_type": event.event_type,
+                            "percentage": event.percentage,
+                            "stage": event.stage,
+                            "message": event.message,
+                            "timestamp": event.timestamp.isoformat()
+                        }
+                    }),
+                    main_loop
+                )
         except Exception as e:
             print(f"Error in progress broadcast: {e}")
     

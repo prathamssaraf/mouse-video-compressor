@@ -185,7 +185,7 @@ class MotionDetector:
                     if len(good_new) > 0:
                         motion_vectors = good_new - good_old
                         motion_magnitudes = np.sqrt(
-                            motion_vectors[:, 0, 0]**2 + motion_vectors[:, 0, 1]**2
+                            motion_vectors[:, 0]**2 + motion_vectors[:, 1]**2
                         )
                         optical_flow_intensity = np.mean(motion_magnitudes) / 100.0  # Normalize
         
