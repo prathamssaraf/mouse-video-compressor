@@ -238,9 +238,9 @@ async def upload_video(file: UploadFile = File(...), metadata: str = "{}"):
         
         logger.log_api_request(LogLevel.INFO, f"Video uploaded: {file.filename}", extra_data={"video_id": video_id})
         
-        # Start analysis if requested
+        # Start analysis in background if requested
         if upload_data.get("auto_analyze", True):
-            await start_video_analysis(video_id)
+            asyncio.create_task(start_video_analysis(video_id))
         
         return {"video_id": video_id, "message": "Video uploaded successfully"}
         
