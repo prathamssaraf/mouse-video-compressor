@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+
+# Video files
+videos/
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.mkv
+
+# Temporary files
+temp/
+uploads/
+*.tmp
+
+# Build outputs
+frontend/build/
+frontend/dist/
+
+# Docker volumes
+volumes/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3

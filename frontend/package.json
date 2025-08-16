@@ -1,0 +1,69 @@
+{
+  "name": "mouse-video-compressor-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for adaptive video compression system for mouse behavior research",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "@mui/material": "^5.14.1",
+    "@mui/icons-material": "^5.14.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/lab": "^5.0.0-alpha.136",
+    "axios": "^1.4.0",
+    "chart.js": "^4.3.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-router-dom": "^6.14.1",
+    "react-virtualized": "^9.22.5",
+    "react-window": "^1.8.8",
+    "socket.io-client": "^4.7.1",
+    "date-fns": "^2.30.0",
+    "lodash": "^4.17.21",
+    "react-player": "^2.12.0",
+    "notistack": "^3.0.1",
+    "material-ui-popup-state": "^5.0.9",
+    "react-beautiful-dnd": "^13.1.1",
+    "recharts": "^2.7.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.195",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@types/react-beautiful-dnd": "^13.1.4",
+    "@types/react-virtualized": "^9.21.21",
+    "@types/react-window": "^1.8.5",
+    "typescript": "^4.9.5"
+  },
+  "proxy": "http://localhost:8000"
+}

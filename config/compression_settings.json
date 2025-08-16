@@ -1,0 +1,152 @@
+{
+  "default_profiles": {
+    "conservative": {
+      "name": "Conservative (Research Priority)",
+      "description": "Prioritizes quality retention, minimal compression during active periods",
+      "expected_compression_ratio": 0.45,
+      "activity_settings": {
+        "high_activity": {
+          "crf": 18,
+          "fps": 30,
+          "preset": "slow",
+          "profile": "high",
+          "bitrate_factor": 1.0
+        },
+        "medium_activity": {
+          "crf": 20,
+          "fps": 25,
+          "preset": "slow",
+          "profile": "high",
+          "bitrate_factor": 0.8
+        },
+        "low_activity": {
+          "crf": 23,
+          "fps": 20,
+          "preset": "medium",
+          "profile": "main",
+          "bitrate_factor": 0.6
+        },
+        "inactive": {
+          "crf": 25,
+          "fps": 15,
+          "preset": "medium",
+          "profile": "main",
+          "bitrate_factor": 0.4
+        }
+      }
+    },
+    "balanced": {
+      "name": "Balanced (Default)",
+      "description": "Good balance between quality and file size reduction",
+      "expected_compression_ratio": 0.35,
+      "activity_settings": {
+        "high_activity": {
+          "crf": 21,
+          "fps": 25,
+          "preset": "medium",
+          "profile": "high",
+          "bitrate_factor": 0.9
+        },
+        "medium_activity": {
+          "crf": 24,
+          "fps": 20,
+          "preset": "medium",
+          "profile": "main",
+          "bitrate_factor": 0.7
+        },
+        "low_activity": {
+          "crf": 27,
+          "fps": 15,
+          "preset": "fast",
+          "profile": "main",
+          "bitrate_factor": 0.5
+        },
+        "inactive": {
+          "crf": 28,
+          "fps": 10,
+          "preset": "fast",
+          "profile": "baseline",
+          "bitrate_factor": 0.3
+        }
+      }
+    },
+    "aggressive": {
+      "name": "Aggressive (Storage Priority)",
+      "description": "Maximum compression, prioritizes storage savings",
+      "expected_compression_ratio": 0.20,
+      "activity_settings": {
+        "high_activity": {
+          "crf": 23,
+          "fps": 20,
+          "preset": "fast",
+          "profile": "main",
+          "bitrate_factor": 0.8
+        },
+        "medium_activity": {
+          "crf": 26,
+          "fps": 15,
+          "preset": "fast",
+          "profile": "main",
+          "bitrate_factor": 0.6
+        },
+        "low_activity": {
+          "crf": 30,
+          "fps": 10,
+          "preset": "fast",
+          "profile": "baseline",
+          "bitrate_factor": 0.4
+        },
+        "inactive": {
+          "crf": 32,
+          "fps": 5,
+          "preset": "ultrafast",
+          "profile": "baseline",
+          "bitrate_factor": 0.2
+        }
+      }
+    }
+  },
+  "roi_compression": {
+    "enabled": true,
+    "roi_quality_boost": 3,
+    "background_quality_reduction": 5,
+    "roi_padding": 50,
+    "min_roi_area": 100
+  },
+  "validation_rules": {
+    "crf_range": [0, 51],
+    "fps_range": [1, 60],
+    "valid_presets": ["ultrafast", "superfast", "veryfast", "faster", "fast", "medium", "slow", "slower", "veryslow"],
+    "valid_profiles": ["baseline", "main", "high"],
+    "max_bitrate_factor": 2.0,
+    "min_bitrate_factor": 0.1
+  },
+  "output_formats": {
+    "mp4": {
+      "codec": "libx264",
+      "container": "mp4",
+      "audio_codec": "aac",
+      "pixel_format": "yuv420p"
+    },
+    "avi": {
+      "codec": "libx264",
+      "container": "avi", 
+      "audio_codec": "mp3",
+      "pixel_format": "yuv420p"
+    },
+    "mov": {
+      "codec": "libx264",
+      "container": "mov",
+      "audio_codec": "aac",
+      "pixel_format": "yuv420p"
+    }
+  },
+  "performance_settings": {
+    "max_concurrent_jobs": 2,
+    "thread_count": 0,
+    "memory_limit_gb": 4,
+    "temp_directory": "./temp",
+    "cleanup_temp_files": true,
+    "temp_file_retention_hours": 24
+  }
+}

@@ -1,0 +1,505 @@
+/* Global component styles */
+
+/* Video Library Styles */
+.video-library-container {
+  padding: 24px;
+}
+
+.video-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.video-card-media {
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+.video-card-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.video-card-content {
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.video-card-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.video-card-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.video-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.video-card-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.video-card-progress {
+  margin-top: 12px;
+}
+
+.video-card-progress-bar {
+  margin-bottom: 4px;
+}
+
+.video-card-progress-text {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Upload Dialog Styles */
+.upload-dropzone {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #fafafa;
+}
+
+.upload-dropzone:hover {
+  background-color: #f0f0f0;
+  border-color: #bbb;
+}
+
+.upload-dropzone.active {
+  border-color: #667eea;
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+.upload-dropzone-icon {
+  font-size: 48px;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.upload-dropzone-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.upload-dropzone-subtitle {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.upload-progress-item {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.upload-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.upload-progress-filename {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin-right: 16px;
+}
+
+.upload-progress-status {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Compression Queue Styles */
+.queue-container {
+  padding: 24px;
+}
+
+.queue-stats-grid {
+  margin-bottom: 24px;
+}
+
+.queue-stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.queue-stat-value {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.queue-stat-label {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.queue-table-container {
+  overflow-x: auto;
+}
+
+.queue-table {
+  min-width: 800px;
+}
+
+.queue-job-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.queue-job-id {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.875rem;
+  background-color: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.queue-progress-container {
+  width: 120px;
+}
+
+.queue-progress-bar {
+  margin-bottom: 4px;
+}
+
+.queue-progress-text {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.queue-actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* Search and Filter Styles */
+.search-filter-container {
+  margin-bottom: 24px;
+}
+
+.search-input {
+  position: relative;
+}
+
+.search-input .MuiInputAdornment-root {
+  color: #999;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 16px;
+  align-items: end;
+}
+
+@media (max-width: 768px) {
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Progress Bar Variants */
+.progress-bar-success .MuiLinearProgress-bar {
+  background-color: #4caf50;
+}
+
+.progress-bar-error .MuiLinearProgress-bar {
+  background-color: #f44336;
+}
+
+.progress-bar-warning .MuiLinearProgress-bar {
+  background-color: #ff9800;
+}
+
+/* Chart Container Styles */
+.chart-container {
+  position: relative;
+  height: 300px;
+  padding: 16px;
+}
+
+.chart-title {
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.chart-no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  font-style: italic;
+}
+
+/* Settings Page Styles */
+.settings-container {
+  padding: 24px;
+}
+
+.settings-section {
+  margin-bottom: 32px;
+}
+
+.settings-section-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.settings-form-group {
+  margin-bottom: 20px;
+}
+
+.settings-slider-container {
+  padding: 0 8px;
+}
+
+.settings-slider-label {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Utility Classes */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #666;
+}
+
+.mb-small {
+  margin-bottom: 8px;
+}
+
+.mb-medium {
+  margin-bottom: 16px;
+}
+
+.mb-large {
+  margin-bottom: 24px;
+}
+
+.mt-small {
+  margin-top: 8px;
+}
+
+.mt-medium {
+  margin-top: 16px;
+}
+
+.mt-large {
+  margin-top: 24px;
+}
+
+/* Loading States */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.loading-text {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+/* Empty State Styles */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.empty-state-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.empty-state-subtitle {
+  color: #999;
+  margin-bottom: 24px;
+}
+
+/* Notification Styles */
+.notification-item {
+  padding: 12px 16px;
+  border-left: 4px solid transparent;
+}
+
+.notification-item.unread {
+  background-color: rgba(25, 118, 210, 0.05);
+  border-left-color: #1976d2;
+}
+
+.notification-item.read {
+  background-color: transparent;
+}
+
+.notification-message {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.notification-message.read {
+  font-weight: normal;
+}
+
+.notification-timestamp {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+/* Responsive Utilities */
+@media (max-width: 600px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .video-card {
+    margin-bottom: 16px;
+  }
+  
+  .video-library-container,
+  .queue-container,
+  .settings-container {
+    padding: 16px;
+  }
+  
+  .queue-table-container {
+    overflow-x: scroll;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 960px) {
+  .hide-tablet {
+    display: none !important;
+  }
+}
+
+/* Dark mode support (if needed) */
+@media (prefers-color-scheme: dark) {
+  .video-card-overlay {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+  }
+  
+  .upload-dropzone {
+    background-color: #1e1e1e;
+    border-color: #333;
+  }
+  
+  .upload-dropzone:hover {
+    background-color: #2a2a2a;
+    border-color: #555;
+  }
+}

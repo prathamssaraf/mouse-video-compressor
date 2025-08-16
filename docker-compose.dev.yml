@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+  # Development version of the main application
+  app-dev:
+    build: 
+      context: .
+      target: development
+    container_name: mouse-video-compressor-dev
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEBUG=true
+      - ENVIRONMENT=development
+      - VIDEO_INPUT_DIR=/app/videos/raw
+      - VIDEO_OUTPUT_DIR=/app/videos/compressed
+      - LOG_DIR=/app/logs
+      - TEMP_DIR=/app/temp
+      - UPLOAD_DIR=/app/uploads
+      - REDIS_URL=redis://redis-dev:6379/0
+    volumes:
+      # Mount source code for hot reload
+      - ./backend:/app/backend
+      - ./config:/app/config
+      # Data volumes
+      - ./volumes/videos/raw:/app/videos/raw
+      - ./volumes/videos/compressed:/app/videos/compressed
+      - ./volumes/logs:/app/logs
+      - ./volumes/temp:/app/temp
+      - ./volumes/uploads:/app/uploads
+    depends_on:
+      - redis-dev
+    restart: unless-stopped
+    networks:
+      - dev-network
+    command: ["python", "-m", "uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  # Frontend development server
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: mouse-compressor-frontend-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - REACT_APP_WS_URL=ws://localhost:8000/ws
+      - REACT_APP_ENVIRONMENT=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    restart: unless-stopped
+    networks:
+      - dev-network
+    stdin_open: true
+    tty: true
+
+  # Redis for development
+  redis-dev:
+    image: redis:7-alpine
+    container_name: mouse-compressor-redis-dev
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - dev-network
+
+  # Database for development
+  postgres-dev:
+    image: postgres:15-alpine
+    container_name: mouse-compressor-db-dev
+    environment:
+      - POSTGRES_DB=mouse_compressor_dev
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - dev-network
+
+  # Test runner service
+  test-runner:
+    build: 
+      context: .
+      target: development
+    container_name: mouse-compressor-tests
+    environment:
+      - ENVIRONMENT=testing
+      - TEST_DATABASE_URL=postgresql://dev:dev@postgres-dev:5432/mouse_compressor_test
+    volumes:
+      - ./backend:/app/backend
+      - ./config:/app/config
+      - ./tests:/app/tests
+      - ./test_videos:/app/test_videos
+    depends_on:
+      - postgres-dev
+      - redis-dev
+    networks:
+      - dev-network
+    profiles:
+      - testing
+    command: ["pytest", "/app/tests", "-v", "--cov=/app/backend"]
+
+volumes:
+  postgres_dev_data:
+    driver: local
+
+networks:
+  dev-network:
+    driver: bridge

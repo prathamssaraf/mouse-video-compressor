@@ -1,0 +1,147 @@
+{
+  "detection_parameters": {
+    "motion_threshold": 0.02,
+    "background_learning_rate": 0.001,
+    "min_inactive_duration": 30,
+    "gaussian_blur_kernel": 21,
+    "morphology_kernel_size": 5
+  },
+  "background_subtraction": {
+    "algorithm": "MOG2",
+    "detect_shadows": true,
+    "var_threshold": 16,
+    "history": 500,
+    "complex_background_subtractor": false
+  },
+  "optical_flow": {
+    "enabled": true,
+    "window_size": [15, 15],
+    "max_level": 2,
+    "criteria": {
+      "type": "EPS_COUNT",
+      "max_count": 10,
+      "epsilon": 0.03
+    }
+  },
+  "feature_detection": {
+    "max_corners": 100,
+    "quality_level": 0.3,
+    "min_distance": 7,
+    "block_size": 7,
+    "use_harris_detector": false,
+    "harris_k": 0.04
+  },
+  "activity_classification": {
+    "thresholds": {
+      "high": 0.08,
+      "medium": 0.04,
+      "low": 0.01,
+      "inactive": 0.0
+    },
+    "temporal_smoothing": {
+      "enabled": true,
+      "window_size": 30,
+      "smoothing_factor": 0.3
+    }
+  },
+  "roi_detection": {
+    "enabled": true,
+    "min_contour_area": 100,
+    "max_contour_area": 50000,
+    "roi_padding": 50,
+    "roi_merge_distance": 100,
+    "roi_tracking": {
+      "enabled": true,
+      "max_tracking_distance": 100,
+      "tracking_history": 10
+    }
+  },
+  "segment_generation": {
+    "max_segment_duration": 10,
+    "min_segment_duration": 1,
+    "activity_change_threshold": 0.02,
+    "merge_similar_segments": true,
+    "similarity_threshold": 0.01
+  },
+  "circadian_analysis": {
+    "enabled": true,
+    "min_duration_hours": 12,
+    "hour_bin_size": 1,
+    "rhythm_detection": {
+      "enabled": true,
+      "min_peak_prominence": 0.1,
+      "peak_detection_window": 3
+    }
+  },
+  "sleep_wake_detection": {
+    "enabled": true,
+    "sleep_detection": {
+      "min_inactive_duration": 300,
+      "sleep_motion_threshold": 0.005,
+      "consolidation_gap": 60
+    },
+    "wake_detection": {
+      "min_active_duration": 30,
+      "wake_motion_threshold": 0.02,
+      "consolidation_gap": 15
+    }
+  },
+  "preprocessing": {
+    "resize": {
+      "enabled": false,
+      "target_width": 640,
+      "target_height": 480,
+      "maintain_aspect_ratio": true
+    },
+    "denoise": {
+      "enabled": true,
+      "filter_strength": 3,
+      "template_window_size": 7,
+      "search_window_size": 21
+    },
+    "contrast_enhancement": {
+      "enabled": false,
+      "clahe": {
+        "clip_limit": 2.0,
+        "grid_size": [8, 8]
+      }
+    }
+  },
+  "output_settings": {
+    "save_motion_overlay": true,
+    "save_background_model": false,
+    "save_roi_images": true,
+    "generate_summary_plots": true,
+    "plot_settings": {
+      "dpi": 300,
+      "figure_size": [12, 8],
+      "save_format": "png"
+    }
+  },
+  "performance": {
+    "frame_skip": 1,
+    "max_processing_fps": 30,
+    "memory_limit_mb": 2048,
+    "enable_gpu_acceleration": false,
+    "batch_processing": {
+      "enabled": true,
+      "batch_size": 100
+    }
+  },
+  "validation": {
+    "min_video_duration": 10,
+    "max_video_duration": 86400,
+    "supported_formats": ["mp4", "avi", "mov", "wmv", "mkv"],
+    "min_resolution": [160, 120],
+    "max_resolution": [7680, 4320],
+    "min_fps": 1,
+    "max_fps": 120
+  },
+  "debug": {
+    "enabled": false,
+    "save_debug_frames": false,
+    "debug_frame_interval": 100,
+    "verbose_logging": false,
+    "profile_performance": false
+  }
+}
